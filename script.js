@@ -367,7 +367,7 @@ function showQuiz() {
 
     options.sort(() => Math.random() - 0.5);
 
-    quizQuestion.textContent = `What type of rock is mainly composed of ${randomRock.info.split(' ').slice(3).join(' ')}`;
+    quizQuestion.textContent = `Which rock has the following definition: ${randomRock.info}`;
     quizOptions.innerHTML = options.map(option => `<button onclick="checkAnswer('${option}', '${correctAnswer}')">${option}</button>`).join('');
 
     quizOverlay.style.display = 'flex';
