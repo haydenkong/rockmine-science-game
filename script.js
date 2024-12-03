@@ -505,7 +505,7 @@ async function endGame() {
         });
         
         if (!scoreResponse.ok) {
-            throw new Error('Score submission failed');
+            throw new Error('Score submission failed, your score was: ' + coins);
         }
         
         // Get leaderboard
@@ -521,7 +521,7 @@ async function endGame() {
         displayLeaderboard(leaderboard);
     } catch (error) {
         console.error('Game end error:', error);
-        alert('There was an error saving your score. Please try again.');
+        alert('There was an error saving your score. Please try again. Your score was ' + coins);
     }
 }
 
