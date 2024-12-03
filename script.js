@@ -139,7 +139,7 @@ let discoveredRocks = new Set();
 
 let playerName = '';
 let gameTimer;
-let timeRemaining = 20; // 4 minutes in seconds
+let timeRemaining = 240; // 4 minutes in seconds
 let isGameActive = false;
 
 const mineArea = document.getElementById('mine-area');
@@ -461,7 +461,7 @@ function startGame() {
     mineCount = 0;
     minedRocks = [];
     discoveredRocks = new Set();
-    timeRemaining = 20;
+    timeRemaining = 240;
     isGameActive = true;
     
     // Update UI
