@@ -7,6 +7,9 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-image: url('bgbg.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 #game-container {
@@ -28,6 +31,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: Orbitron, sans-serif;
 }
 
 h1 {
@@ -46,12 +50,19 @@ main {
     justify-content: center;
     align-items: center;
     position: relative;
+    /* fill with image */
+    background-image: url('bg01.jpg');
+    background-size: cover;
+    /* make it so that it is algined centered */
+    background-position: center;
 }
 
 #mine-area {
-    width: 300px;
+    width: 200px;
     height: 200px;
-    background-color: #8b4513;
+    /* blur glass effect */
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.127);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,6 +82,7 @@ main {
     font-weight: bold;
     color: #fff;
     transition: transform 0.1s;
+    font-family: Orbitron, sans-serif;
 }
 
 #rock:active {
@@ -245,6 +257,17 @@ main {
     position: relative;
     transform: translateY(-20px);
     transition: transform 0.3s;
+}
+
+.rock-info-modal h3 {
+    font-family: Orbitron, sans-serif;
+    font-size: 2rem;
+}
+
+.rock-info-modal img {
+    max-height: 300px;
+    border-radius: 5px;
+    margin: 10px 0;
 }
 
 .rock-info-modal.active {
