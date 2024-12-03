@@ -461,7 +461,7 @@ function startGame() {
     mineCount = 0;
     minedRocks = [];
     discoveredRocks = new Set();
-    timeRemaining = 240;
+    timeRemaining = 20;
     isGameActive = true;
     
     // Update UI
