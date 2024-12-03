@@ -236,20 +236,36 @@ function mineRock() {
 }
 
 function showRockInfo(rock) {
-    const popup = document.createElement('div');
-    popup.className = 'popup';
-    popup.innerHTML = `
+    const overlay = document.createElement('div');
+    overlay.className = 'rock-info-overlay';
+    
+    const modal = document.createElement('div');
+    modal.className = 'rock-info-modal';
+    modal.innerHTML = `
+        <button class="close-button">&times;</button>
         <h3>${rock.name}</h3>
+        <img src="${rock.image}" alt="${rock.name}" style="width:100%; border-radius:5px; margin:10px 0;">
         <p>${rock.info}</p>
         <p>Found at depth: ${depth}m</p>
         <p>Value: ${rock.value} coins</p>
     `;
-    document.body.appendChild(popup);
     
-    setTimeout(() => {
-        popup.style.opacity = '0';
-        setTimeout(() => popup.remove(), 300);
-    }, 3000);
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    
+    // Trigger animations
+    requestAnimationFrame(() => {
+        overlay.classList.add('active');
+        modal.classList.add('active');
+    });
+    
+    // Close handling
+    const closeButton = modal.querySelector('.close-button');
+    closeButton.onclick = () => {
+        overlay.classList.remove('active');
+        modal.classList.remove('active');
+        setTimeout(() => overlay.remove(), 300);
+    };
 }
 
 function updateRockBook(rock) {
