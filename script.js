@@ -490,32 +490,39 @@ async function endGame() {
     clearInterval(gameTimer);
     isGameActive = false;
     
-    // Submit score
-    await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/score', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            name: playerName,
-            score: coins
-        })
-    });
-    
-    // Get leaderboard
-    const response = await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/leaderboard');
-    const leaderboard = await response.json();
-    
-    // Display leaderboard
-    leaderboardList.innerHTML = leaderboard.map((entry, index) => `
-        <div class="leaderboard-item ${entry.name === playerName ? 'highlight' : ''}">
-            <span>#${index + 1} ${entry.name}</span>
-            <span>${entry.score}</span>
-        </div>
-    `).join('');
-    
-    document.getElementById('final-score').textContent = `Your Score: ${coins}`;
-    leaderboardModal.style.display = 'flex';
+    try {
+        // Submit score
+        const scoreResponse = await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/score', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                name: playerName,
+                score: coins
+            })
+        });
+        
+        if (!scoreResponse.ok) {
+            throw new Error('Score submission failed');
+        }
+        
+        // Get leaderboard
+        const leaderboardResponse = await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/leaderboard', {
+            credentials: 'include'
+        });
+        
+        if (!leaderboardResponse.ok) {
+            throw new Error('Failed to fetch leaderboard');
+        }
+        
+        const leaderboard = await leaderboardResponse.json();
+        displayLeaderboard(leaderboard);
+    } catch (error) {
+        console.error('Game end error:', error);
+        alert('There was an error saving your score. Please try again.');
+    }
 }
 
 playAgainButton.addEventListener('click', () => {
