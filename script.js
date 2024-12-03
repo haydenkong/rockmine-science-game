@@ -5,7 +5,7 @@ const rocks = [
         info: "An igneous rock formed from the slow cooling and solidification of magma deep beneath the Earth's surface. It's composed of quartz, feldspar, and mica.",
         image: "https://png.pngtree.com/png-vector/20230905/ourmid/pngtree-stone-granite-studio-shot-gray-png-image_9952722.png",
         minDepth: 0,
-        maxDepth: 3
+        maxDepth: 30
     },
     {
         name: "Limestone",
@@ -13,7 +13,7 @@ const rocks = [
         info: "A sedimentary rock formed primarily from the accumulation of calcium carbonate (calcite) remains of marine organisms like shells and coral. It often contains fossils and can be layered.",
         image: "https://static.vecteezy.com/system/resources/previews/035/938/046/non_2x/ai-generated-limestone-rock-isolated-on-transparent-background-free-png.png",
         minDepth: 0,
-        maxDepth: 2
+        maxDepth: 20
     },
      {
         name: "Shale",
@@ -21,7 +21,7 @@ const rocks = [
         info: "A fine-grained sedimentary rock formed from the compaction of mud, clay, and silt. It often splits into thin layers.",
         image: "https://png.pngtree.com/png-vector/20240804/ourmid/pngtree-a-thick-and-heavy-shale-rock-png-image_13367456.png",
         minDepth: 0,
-        maxDepth: 2
+        maxDepth: 20
     },
     {
         name: "Marble",
@@ -29,7 +29,7 @@ const rocks = [
         info: "A metamorphic rock formed when limestone is subjected to high heat and pressure, causing the calcite to recrystallize. This results in a beautiful, often veined, rock.",
         image: "https://thumbs.dreamstime.com/b/raw-marble-rock-cutout-white-background-172494727.jpg",
         minDepth: 2,
-        maxDepth: 4
+        maxDepth: 25
     },
     {
         name: "Sandstone",
@@ -37,7 +37,7 @@ const rocks = [
         info: "A sedimentary rock composed of sand-sized grains of minerals like quartz and feldspar cemented together. The color depends on the minerals present.",
         image: "https://t4.ftcdn.net/jpg/01/38/30/39/360_F_138303918_rL4rt7iabcAmDJeLFlq5uTgMbNcJayhH.jpg",
         minDepth: 0,
-        maxDepth: 3
+        maxDepth: 20
     },
      {
         name: "Conglomerate",
@@ -45,7 +45,7 @@ const rocks = [
         info: "A sedimentary rock consisting of rounded gravel and pebble-sized fragments cemented together. It often forms in high-energy environments like rivers.",
         image: "https://rocksminerals.flexiblelearning.auckland.ac.nz/rocks/images/conglomerate1.jpg",
         minDepth: 1,
-        maxDepth: 3
+        maxDepth: 20
     },
     {
         name: "Slate",
@@ -53,7 +53,7 @@ const rocks = [
         info: "A fine-grained, foliated metamorphic rock formed from the low-grade metamorphism of shale. It splits easily into thin, flat sheets.",
         image: "https://static.vecteezy.com/system/resources/thumbnails/045/913/294/small_2x/rough-black-slate-rock-cut-out-stock-png.png",
         minDepth: 1,
-        maxDepth: 4
+        maxDepth: 25
     },
       {
         name: "Diorite",
@@ -61,7 +61,7 @@ const rocks = [
         info: "An intrusive igneous rock that is intermediate in composition between gabbro and granite. It's mainly composed of plagioclase feldspar, hornblende, and biotite.",
         image: "https://www.shutterstock.com/image-photo/big-diorite-rock-stone-garden-600nw-2360086829.jpg",
         minDepth: 2,
-        maxDepth: 5
+        maxDepth: 20
     },
        {
         name: "Gabbro",
@@ -69,7 +69,7 @@ const rocks = [
         info: "A coarse-grained, dark-colored intrusive igneous rock. It's chemically equivalent to basalt and is primarily composed of plagioclase feldspar and pyroxene.",
            image: "https://www.sandatlas.org/wp-content/uploads/1353-09.06.15_1-gabbro-augite-phenocrysts-11-cm1.jpg",
         minDepth: 3,
-        maxDepth: 6
+        maxDepth: 15
     },
       {
         name: "Schist",
@@ -77,7 +77,7 @@ const rocks = [
         info: "A medium-grade metamorphic rock characterized by its foliation, meaning it has layers formed by platy minerals like mica. It's formed from the metamorphism of shale or mudstone.",
         image: "https://i0.wp.com/geologyscience.com/wp-content/uploads/2018/04/schist-mica-10-cm-2.jpg?fit=750%2C644&ssl=1",
         minDepth: 3,
-        maxDepth: 6
+        maxDepth: 20
 
     },
     {
@@ -86,7 +86,7 @@ const rocks = [
         info: "A dark, fine-grained extrusive igneous rock formed from the rapid cooling of lava at the Earth's surface. It's a common volcanic rock.",
         image: "https://www.shutterstock.com/image-photo/basalt-rock-stone-isolated-on-260nw-1856150449.jpg",
         minDepth: 1,
-        maxDepth: 5
+        maxDepth: 15
     },
     {
         name: "Quartzite",
@@ -94,7 +94,7 @@ const rocks = [
         info: "A hard, non-foliated metamorphic rock formed when sandstone is subjected to high heat and pressure. The quartz grains recrystallize, making it very durable.",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5PX3RYlCM51FXC9WJm9-Vu-Au5D61IQGGRQ&s",
         minDepth: 3,
-        maxDepth: 6
+        maxDepth: 10
     },
     {
         name: "Gneiss",
@@ -102,7 +102,7 @@ const rocks = [
         info: "A high-grade metamorphic rock formed under intense heat and pressure, often deep within the Earth's crust. It's characterized by its distinct banding.",
         image: "https://www.sandatlas.org/wp-content/uploads/00003-gneiss.jpg",
         minDepth: 4,
-       maxDepth: 7
+       maxDepth: 15
     },
      {
         name: "Obsidian",
@@ -110,7 +110,7 @@ const rocks = [
         info: "A volcanic glass formed from the rapid cooling of lava. It has a glassy texture and is very sharp.",
         image: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTA5L3Jhd3BpeGVsb2ZmaWNlN19wcm9mZXNzaW9uYWxfb2JqZWN0X3Bob3RvZ3JhcGh5X29mX2FuX2lzb2xhdGVkX19hMDQ4MjJhMi0zN2FjLTRlNjgtODA5Yy1jZGYzZWM2MjI3ZTAucG5n.png",
         minDepth: 4,
-       maxDepth: 7
+       maxDepth: 15
     },
      {
         name: "Pumice",
@@ -118,7 +118,7 @@ const rocks = [
       info: "A light-colored, extremely porous volcanic rock formed during explosive eruptions. It's so light it can often float on water.",
          image: "https://png.pngtree.com/png-vector/20240801/ourmid/pngtree-pumice-stone-texture-ideal-for-foot-care-and-cleaning-png-image_13323448.png",
         minDepth: 2,
-        maxDepth: 5
+        maxDepth: 15
     },
      {
         name: "Andesite",
@@ -126,7 +126,7 @@ const rocks = [
         info: "An extrusive igneous rock that is intermediate in composition between rhyolite and basalt. It's commonly associated with volcanic activity along continental margins.",
          image: "https://www.arelstone.com/en/images/Urunler/andezit/andezit.png",
         minDepth: 3,
-        maxDepth: 6
+        maxDepth: 20
     }
 ];
 
