@@ -15,6 +15,7 @@
             <div id="stats">
                 <span><i class="fas fa-coins"></i> Coins: <span id="coins">0</span></span>
                 <span><i class="fas fa-mountain"></i> Depth: <span id="depth">1</span>m</span>
+                <span id="timer">4:00</span>
             </div>
         </header>
         <main>
@@ -54,6 +55,23 @@
             <h2>Rock Quiz</h2>
             <p id="quiz-question"></p>
             <div id="quiz-options"></div>
+        </div>
+    </div>
+    <div id="name-modal" class="overlay">
+        <div class="modal-content">
+            <h2>Enter Your Name</h2>
+            <input type="text" id="player-name" maxlength="20">
+            <button id="start-game">Start Game</button>
+        </div>
+    </div>
+
+    <div id="leaderboard-modal" class="overlay">
+        <div class="modal-content">
+            <h2>Game Over!</h2>
+            <div id="final-score"></div>
+            <h3>Leaderboard</h3>
+            <div id="leaderboard-list"></div>
+            <button id="play-again">Play Again</button>
         </div>
     </div>
     <script src="script.js"></script>

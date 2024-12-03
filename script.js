@@ -137,6 +137,11 @@ let mineCount = 0;
 let minedRocks = [];
 let discoveredRocks = new Set();
 
+let playerName = '';
+let gameTimer;
+let timeRemaining = 20; // 4 minutes in seconds
+let isGameActive = false;
+
 const mineArea = document.getElementById('mine-area');
 const rockElement = document.getElementById('rock');
 const coinsElement = document.getElementById('coins');
@@ -152,6 +157,14 @@ const rockCollection = document.getElementById('rock-collection');
 const quizOverlay = document.getElementById('quiz-overlay');
 const quizQuestion = document.getElementById('quiz-question');
 const quizOptions = document.getElementById('quiz-options');
+
+const nameModal = document.getElementById('name-modal');
+const startGameButton = document.getElementById('start-game');
+const playerNameInput = document.getElementById('player-name');
+const timerElement = document.getElementById('timer');
+const leaderboardModal = document.getElementById('leaderboard-modal');
+const leaderboardList = document.getElementById('leaderboard-list');
+const playAgainButton = document.getElementById('play-again');
 
 function saveGame() {
     const gameState = {
@@ -196,6 +209,7 @@ function loadGame() {
 }
 
 function mineRock() {
+    if (!isGameActive) return;
     const availableRocks = rocks.filter(rock => 
         depth >= rock.minDepth && depth <= rock.maxDepth
     );
@@ -425,6 +439,89 @@ function updateRockStyle() {
     styleSheet.innerText = rockStyle;
     document.head.appendChild(styleSheet);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateRockStyle();
+    nameModal.style.display = 'flex';
+});
+
+startGameButton.addEventListener('click', () => {
+    playerName = playerNameInput.value.trim();
+    if (playerName) {
+        nameModal.style.display = 'none';
+        startGame();
+    }
+});
+
+function startGame() {
+    // Reset game state
+    coins = 0;
+    depth = 1;
+    pickaxePower = 1;
+    mineCount = 0;
+    minedRocks = [];
+    discoveredRocks = new Set();
+    timeRemaining = 240;
+    isGameActive = true;
+    
+    // Update UI
+    updateTimer();
+    coinsElement.textContent = coins;
+    depthElement.textContent = depth;
+    
+    // Start timer
+    gameTimer = setInterval(() => {
+        timeRemaining--;
+        updateTimer();
+        
+        if (timeRemaining <= 0) {
+            endGame();
+        }
+    }, 1000);
+}
+
+function updateTimer() {
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+    timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+
+async function endGame() {
+    clearInterval(gameTimer);
+    isGameActive = false;
+    
+    // Submit score
+    await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/score', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            name: playerName,
+            score: coins
+        })
+    });
+    
+    // Get leaderboard
+    const response = await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/leaderboard');
+    const leaderboard = await response.json();
+    
+    // Display leaderboard
+    leaderboardList.innerHTML = leaderboard.map((entry, index) => `
+        <div class="leaderboard-item ${entry.name === playerName ? 'highlight' : ''}">
+            <span>#${index + 1} ${entry.name}</span>
+            <span>${entry.score}</span>
+        </div>
+    `).join('');
+    
+    document.getElementById('final-score').textContent = `Your Score: ${coins}`;
+    leaderboardModal.style.display = 'flex';
+}
+
+playAgainButton.addEventListener('click', () => {
+    leaderboardModal.style.display = 'none';
+    nameModal.style.display = 'flex';
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     updateRockStyle();
