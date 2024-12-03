@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Mining Adventure</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <div id="game-container">
+        <header>
+            <h1>Rock Mine</h1>
+            <div id="stats">
+                <span><i class="fas fa-coins"></i> Coins: <span id="coins">0</span></span>
+                <span><i class="fas fa-mountain"></i> Depth: <span id="depth">1</span>m</span>
+            </div>
+        </header>
+        <main>
+            <div id="mine-area">
+                <div id="rock">
+                    <i class="fas fa-gem"></i>
+                    <span>Mine!</span>
+                </div>
+            </div>
+        </main>
+        <aside id="sidebar">
+            <button id="toggle-shop" class="sidebar-toggle">
+                <i class="fas fa-store"></i> Shop
+            </button>
+            <button id="toggle-rockbook" class="sidebar-toggle">
+                <i class="fas fa-book"></i> Rock Book
+            </button>
+            <div id="shop" class="sidebar-content">
+                <h2>Shop</h2>
+                <button id="upgrade-pick" class="shop-item">
+                    <i class="fas fa-hammer"></i> Upgrade Pickaxe
+                    <span class="cost">50 coins</span>
+                </button>
+                <button id="upgrade-depth" class="shop-item">
+                    <i class="fas fa-arrow-down"></i> Increase Depth
+                    <span class="cost">100 coins</span>
+                </button>
+            </div>
+            <div id="rockbook" class="sidebar-content">
+                <h2>Rock Book</h2>
+                <div id="rock-collection"></div>
+            </div>
+        </aside>
+    </div>
+    <div id="quiz-overlay" class="overlay">
+        <div id="quiz-container">
+            <h2>Rock Quiz</h2>
+            <p id="quiz-question"></p>
+            <div id="quiz-options"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

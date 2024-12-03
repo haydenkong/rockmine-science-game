@@ -1,0 +1,246 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    height: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#stats {
+    display: flex;
+    gap: 20px;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#mine-area {
+    width: 300px;
+    height: 200px;
+    background-color: #8b4513;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#rock {
+    width: 100px;
+    height: 100px;
+    background-color: #a9a9a9;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #fff;
+    transition: transform 0.1s;
+}
+
+#rock:active {
+    transform: scale(0.95);
+}
+
+#rock i {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+#sidebar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #f9f9f9;
+    border-left: 1px solid #ddd;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+#sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar-toggle {
+    position: absolute;
+    left: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#toggle-shop {
+    top: 20px;
+}
+
+#toggle-rockbook {
+    top: 70px;
+}
+
+.sidebar-content {
+    padding: 20px;
+    display: none;
+}
+
+.sidebar-content.active {
+    display: block;
+}
+
+.shop-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.shop-item:hover {
+    background-color: #d0d0d0;
+}
+
+.cost {
+    font-size: 12px;
+    color: #666;
+}
+
+#rock-collection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.rock-item {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.rock-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+}
+
+#quiz-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 100%;
+}
+
+#quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#quiz-options button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#quiz-options button:hover {
+    background-color: #45a049;
+}
+
+.rock-item h3 {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.rock-item p {
+    font-size: 12px;
+    color: #666;
+}
+
+.popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    max-width: 300px;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
