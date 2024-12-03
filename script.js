@@ -77,7 +77,7 @@ const rocks = [
         info: "A medium-grade metamorphic rock characterized by its foliation, meaning it has layers formed by platy minerals like mica. It's formed from the metamorphism of shale or mudstone.",
         image: "https://i0.wp.com/geologyscience.com/wp-content/uploads/2018/04/schist-mica-10-cm-2.jpg?fit=750%2C644&ssl=1",
         minDepth: 3,
-        maxDepth: 20
+        maxDepth: 30
 
     },
     {
@@ -86,7 +86,7 @@ const rocks = [
         info: "A dark, fine-grained extrusive igneous rock formed from the rapid cooling of lava at the Earth's surface. It's a common volcanic rock.",
         image: "https://www.shutterstock.com/image-photo/basalt-rock-stone-isolated-on-260nw-1856150449.jpg",
         minDepth: 1,
-        maxDepth: 15
+        maxDepth: 30
     },
     {
         name: "Quartzite",
@@ -94,7 +94,7 @@ const rocks = [
         info: "A hard, non-foliated metamorphic rock formed when sandstone is subjected to high heat and pressure. The quartz grains recrystallize, making it very durable.",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5PX3RYlCM51FXC9WJm9-Vu-Au5D61IQGGRQ&s",
         minDepth: 3,
-        maxDepth: 10
+        maxDepth: 100
     },
     {
         name: "Gneiss",
@@ -102,7 +102,7 @@ const rocks = [
         info: "A high-grade metamorphic rock formed under intense heat and pressure, often deep within the Earth's crust. It's characterized by its distinct banding.",
         image: "https://www.sandatlas.org/wp-content/uploads/00003-gneiss.jpg",
         minDepth: 4,
-       maxDepth: 15
+       maxDepth: 100
     },
      {
         name: "Obsidian",
@@ -110,7 +110,7 @@ const rocks = [
         info: "A volcanic glass formed from the rapid cooling of lava. It has a glassy texture and is very sharp.",
         image: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTA5L3Jhd3BpeGVsb2ZmaWNlN19wcm9mZXNzaW9uYWxfb2JqZWN0X3Bob3RvZ3JhcGh5X29mX2FuX2lzb2xhdGVkX19hMDQ4MjJhMi0zN2FjLTRlNjgtODA5Yy1jZGYzZWM2MjI3ZTAucG5n.png",
         minDepth: 4,
-       maxDepth: 15
+       maxDepth: 100
     },
      {
         name: "Pumice",
@@ -118,7 +118,7 @@ const rocks = [
       info: "A light-colored, extremely porous volcanic rock formed during explosive eruptions. It's so light it can often float on water.",
          image: "https://png.pngtree.com/png-vector/20240801/ourmid/pngtree-pumice-stone-texture-ideal-for-foot-care-and-cleaning-png-image_13323448.png",
         minDepth: 2,
-        maxDepth: 15
+        maxDepth: 100
     },
      {
         name: "Andesite",
@@ -126,7 +126,7 @@ const rocks = [
         info: "An extrusive igneous rock that is intermediate in composition between rhyolite and basalt. It's commonly associated with volcanic activity along continental margins.",
          image: "https://www.arelstone.com/en/images/Urunler/andezit/andezit.png",
         minDepth: 3,
-        maxDepth: 20
+        maxDepth: 100
     }
 ];
 
