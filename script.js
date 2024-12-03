@@ -378,8 +378,8 @@ function checkAnswer(selected, correct) {
         alert("Correct! You earned 20 bonus coins!");
         coins += 20;
     } else {
-        alert(`Incorrect. The correct answer was ${correct}. You lost 10 coins.`);
-        coins -= 10;
+        alert(`Incorrect. The correct answer was ${correct}. You lost 20 coins.`);
+        coins -= 20;
     }
     coinsElement.textContent = coins;
     quizOverlay.style.display = 'none';
