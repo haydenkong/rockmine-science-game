@@ -487,9 +487,7 @@ function updateTimer() {
 }
 
 async function endGame() {
-    clearInterval(gameTimer);
     isGameActive = false;
-    
     try {
         // Submit score
         const scoreResponse = await fetch('https://api.pixelverse.tech/supabase/sciencegame/score', {
@@ -503,22 +501,39 @@ async function endGame() {
             })
         });
         
+        // Log full response details
+        console.log('Score submission response:', {
+            status: scoreResponse.status,
+            statusText: scoreResponse.statusText
+        });
+
+        const scoreData = await scoreResponse.text(); // Try to get response body as text
+        console.log('Score response body:', scoreData);
+        
         if (!scoreResponse.ok) {
-            throw new Error('Score submission failed, your score was: ' + coins);
+            throw new Error(`Score submission failed: ${scoreResponse.status} ${scoreResponse.statusText}`);
         }
         
-        // Get leaderboard
+        // Get leaderboard with error details
         const leaderboardResponse = await fetch('https://api.pixelverse.tech/supabase/sciencegame/leaderboard');
         
+        console.log('Leaderboard response:', {
+            status: leaderboardResponse.status,
+            statusText: leaderboardResponse.statusText
+        });
+
         if (!leaderboardResponse.ok) {
-            throw new Error('Failed to fetch leaderboard');
+            throw new Error(`Leaderboard fetch failed: ${leaderboardResponse.status} ${leaderboardResponse.statusText}`);
         }
         
         const leaderboard = await leaderboardResponse.json();
         displayLeaderboard(leaderboard);
     } catch (error) {
-        console.error(error);
-        alert('There was an error saving your score. Please try again. Your score was ' + coins);
+        console.error('Detailed error:', {
+            message: error.message,
+            stack: error.stack
+        });
+        alert(`Error: ${error.message}. Score: ${coins}`);
     }
 }
 
