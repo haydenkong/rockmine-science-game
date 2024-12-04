@@ -517,7 +517,7 @@ async function endGame() {
         const leaderboard = await leaderboardResponse.json();
         displayLeaderboard(leaderboard);
     } catch (error) {
-        console.error('Game end error:', error);
+        console.error(error);
         alert('There was an error saving your score. Please try again. Your score was ' + coins);
     }
 }
