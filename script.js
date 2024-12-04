@@ -480,16 +480,15 @@ function startGame() {
     }, 1000);
 }
 
-function updateTimer() {
-    const minutes = Math.floor(timeRemaining / 60);
-    const seconds = timeRemaining % 60;
-    timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-}
+
 
 async function endGame() {
+    if (!isGameActive) return; // Prevent multiple calls
     isGameActive = false;
+    clearInterval(gameTimer); // Stop the timer
+    
     try {
-        // Submit score
+        // Submit score only once
         const scoreResponse = await fetch('https://api.pixelverse.tech/supabase/sciencegame/score', {
             method: 'POST',
             headers: {
@@ -500,48 +499,28 @@ async function endGame() {
                 score: coins
             })
         });
-        
-        // Log full response details
-        console.log('Score submission response:', {
-            status: scoreResponse.status,
-            statusText: scoreResponse.statusText
-        });
 
-        const scoreData = await scoreResponse.text(); // Try to get response body as text
-        console.log('Score response body:', scoreData);
-        
         if (!scoreResponse.ok) {
-            throw new Error(`Score submission failed: ${scoreResponse.status} ${scoreResponse.statusText}`);
+            throw new Error(`Score submission failed: ${scoreResponse.status}`);
         }
-        
-        // Get leaderboard with error details
-        const leaderboardResponse = await fetch('https://api.pixelverse.tech/supabase/sciencegame/leaderboard');
-        
-        console.log('Leaderboard response:', {
-            status: leaderboardResponse.status,
-            statusText: leaderboardResponse.statusText
-        });
 
-        if (!leaderboardResponse.ok) {
-            throw new Error(`Leaderboard fetch failed: ${leaderboardResponse.status} ${leaderboardResponse.statusText}`);
-        }
-        
+        // Get leaderboard
+        const leaderboardResponse = await fetch('https://api.pixelverse.tech/supabase/sciencegame/leaderboard');
         const leaderboard = await leaderboardResponse.json();
-        displayLeaderboard(leaderboard);
+        
+        // Find player's rank
+        const sortedLeaderboard = leaderboard.sort((a, b) => b.score - a.score);
+        const playerRank = sortedLeaderboard.findIndex(entry => 
+            entry.name === playerName && entry.score === coins) + 1;
+        
+        displayLeaderboard(sortedLeaderboard, playerRank);
     } catch (error) {
-        console.error('Detailed error:', {
-            message: error.message,
-            stack: error.stack
-        });
-        alert(`Error: ${error.message}. Score: ${coins}`);
+        console.error('Game end error:', error);
+        alert(`Error saving score: ${error.message}`);
     }
 }
 
-function displayLeaderboard(leaderboardData) {
-    // Sort leaderboard by score in descending order
-    const sortedLeaderboard = leaderboardData.sort((a, b) => b.score - a.score);
-    
-    // Create or get leaderboard container
+function displayLeaderboard(leaderboardData, playerRank) {
     let leaderboardContainer = document.getElementById('leaderboard-container');
     if (!leaderboardContainer) {
         leaderboardContainer = document.createElement('div');
@@ -549,9 +528,14 @@ function displayLeaderboard(leaderboardData) {
         document.body.appendChild(leaderboardContainer);
     }
 
-    // Clear previous content
+    const rankMessage = playerRank <= 10 
+        ? `Congratulations! You ranked #${playerRank}!` 
+        : `Your rank: #${playerRank}`;
+
     leaderboardContainer.innerHTML = `
-        <h2>Leaderboard</h2>
+        <h2>Game Over!</h2>
+        <p>Your Score: ${coins}</p>
+        <p>${rankMessage}</p>
         <table>
             <thead>
                 <tr>
@@ -561,8 +545,8 @@ function displayLeaderboard(leaderboardData) {
                 </tr>
             </thead>
             <tbody>
-                ${sortedLeaderboard.slice(0, 10).map((entry, index) => `
-                    <tr>
+                ${leaderboardData.slice(0, 10).map((entry, index) => `
+                    <tr ${entry.name === playerName && entry.score === coins ? 'class="highlight"' : ''}>
                         <td>${index + 1}</td>
                         <td>${entry.name}</td>
                         <td>${entry.score}</td>
@@ -570,20 +554,43 @@ function displayLeaderboard(leaderboardData) {
                 `).join('')}
             </tbody>
         </table>
+        <button id="playAgain">Play Again</button>
     `;
 
-    // Add basic styles
-    leaderboardContainer.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    // Add styles
+    const style = document.createElement('style');
+    style.textContent = `
+        #leaderboard-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .highlight {
+            background: #ffeb3b;
+            font-weight: bold;
+        }
     `;
+    document.head.appendChild(style);
 }
+
+// Update timer function
+function updateTimer() {
+    if (timeRemaining <= 0) {
+        endGame();
+        return;
+    }
+    const minutes = Math.floor(timeRemaining / 60);
+    const seconds = timeRemaining % 60;
+    timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+}
+
+
 
 playAgainButton.addEventListener('click', () => {
     leaderboardModal.style.display = 'none';
