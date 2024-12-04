@@ -497,7 +497,6 @@ async function endGame() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
             body: JSON.stringify({
                 name: playerName,
                 score: coins
@@ -509,9 +508,7 @@ async function endGame() {
         }
         
         // Get leaderboard
-        const leaderboardResponse = await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/leaderboard', {
-            credentials: 'include'
-        });
+        const leaderboardResponse = await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/leaderboard');
         
         if (!leaderboardResponse.ok) {
             throw new Error('Failed to fetch leaderboard');
