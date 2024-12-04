@@ -495,7 +495,7 @@ async function endGame() {
         const scoreResponse = await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/score', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
             credentials: 'include',
             body: JSON.stringify({
