@@ -422,3 +422,83 @@ main {
 .modal-content {
     animation: modalFadeIn 0.5s ease-out;
 }
+
+#leaderboard-container {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+}
+
+#leaderboard-container h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #2c3e50;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+#leaderboard-container p {
+    font-size: 1em;
+    color: #555;
+    margin: 8px 0;
+    padding: 8px;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 6px;
+}
+
+#leaderboard-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#leaderboard-container thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#leaderboard-container tbody {
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#leaderboard-container thead, 
+#leaderboard-container tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#leaderboard-container th,
+#leaderboard-container td {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+#leaderboard-container th {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+#leaderboard-container tr.highlight {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: black;
+}
+
+#playAgain {
+    padding: 12px 30px;
+    font-size: 1em;
+    margin-top: 15px;
+}
