@@ -492,7 +492,7 @@ async function endGame() {
     
     try {
         // Submit score
-        const scoreResponse = await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/score', {
+        const scoreResponse = await fetch('https://api.pixelverse.tech/supabase/sciencegame/score', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -508,7 +508,7 @@ async function endGame() {
         }
         
         // Get leaderboard
-        const leaderboardResponse = await fetch('https://api.pixelverse.tech/supabasedb/sciencegame/leaderboard');
+        const leaderboardResponse = await fetch('https://api.pixelverse.tech/supabase/sciencegame/leaderboard');
         
         if (!leaderboardResponse.ok) {
             throw new Error('Failed to fetch leaderboard');
