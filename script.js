@@ -529,11 +529,11 @@ function displayLeaderboard(leaderboardData, playerRank) {
     }
 
     const rankMessage = playerRank <= 10 
-        ? `Congratulations! You ranked #${playerRank}!` 
+        ? `Congrats! You ranked #${playerRank}!` 
         : `Your rank: #${playerRank}`;
 
     leaderboardContainer.innerHTML = `
-        <h2>Game Over!</h2>
+        <h2>Time is up!</h2>
         <p>Your Score: ${coins}</p>
         <p>${rankMessage}</p>
         <table>
@@ -555,6 +555,11 @@ function displayLeaderboard(leaderboardData, playerRank) {
             </tbody>
         </table>
         <button id="playAgain">Play Again</button>
+        <script>
+            document.getElementById('playAgain').addEventListener('click', () => {
+                location.reload();
+            }
+        </script>
     `;
 
     // Add styles
