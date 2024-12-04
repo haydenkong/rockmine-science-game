@@ -328,3 +328,97 @@ main {
     background: #4CAF50;
     color: white;
   }
+
+
+/* Add these styles to your CSS file */
+.modal-content {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.modal-content p {
+    color: #555;
+    line-height: 1.8;
+    margin: 20px 0;
+    font-size: 1.1em;
+    padding: 20px;
+    background: rgba(76, 175, 80, 0.1);
+    border-radius: 10px;
+    border-left: 4px solid #4CAF50;
+}
+
+#player-name {
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-size: 1.1em;
+    width: 80%;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#player-name:focus {
+    border-color: #45a049;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+#start-game {
+    padding: 15px 40px;
+    font-size: 1.2em;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+#start-game:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+#start-game:active {
+    transform: translateY(1px);
+}
+
+.overlay {
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content {
+    animation: modalFadeIn 0.5s ease-out;
+}
