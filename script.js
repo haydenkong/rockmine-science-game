@@ -537,6 +537,54 @@ async function endGame() {
     }
 }
 
+function displayLeaderboard(leaderboardData) {
+    // Sort leaderboard by score in descending order
+    const sortedLeaderboard = leaderboardData.sort((a, b) => b.score - a.score);
+    
+    // Create or get leaderboard container
+    let leaderboardContainer = document.getElementById('leaderboard-container');
+    if (!leaderboardContainer) {
+        leaderboardContainer = document.createElement('div');
+        leaderboardContainer.id = 'leaderboard-container';
+        document.body.appendChild(leaderboardContainer);
+    }
+
+    // Clear previous content
+    leaderboardContainer.innerHTML = `
+        <h2>Leaderboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${sortedLeaderboard.slice(0, 10).map((entry, index) => `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${entry.name}</td>
+                        <td>${entry.score}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+    `;
+
+    // Add basic styles
+    leaderboardContainer.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    `;
+}
+
 playAgainButton.addEventListener('click', () => {
     leaderboardModal.style.display = 'none';
     nameModal.style.display = 'flex';
